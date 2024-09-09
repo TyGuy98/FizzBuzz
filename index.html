@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FizzBuzz</title>
+
+    <style>
+        body {
+            background-color: rgb(71, 68, 68);
+            color: white;
+        }
+
+        p {
+            white-space: pre-wrap;
+        }
+
+        .fizzbuzz {
+            color: red;
+        }
+
+        .fizz {
+            color: green;
+        }
+
+        .buzz {
+            color: blue;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1>Fizz Buzz Program</h1>
+    <p></p>
+
+    <script>
+        const para = document.querySelector('p');
+        let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
+        let output = "";
+
+        for (let i = 1; i<= answer; i++) {
+
+            if (i % 3 === 0 && i % 5 === 0  ) {
+                output += '<span class="fizzbuzz">FizzBuzz</span><br>';
+            }
+
+            else if (i % 3 === 0){
+                output += '<span class="fizz">Fizz</span><br>';
+                
+            }
+
+            else if (i % 5 === 0) {
+                output += '<span class="buzz">Buzz</span><br>';
+            }
+
+            else {
+                output += i + "<br>";
+            }
+        }
+        
+        para.innerHTML = output;
+        
+
+
+    </script>
+    
+
+
+    
+</body>
+</html>
