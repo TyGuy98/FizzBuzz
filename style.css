@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(71, 68, 68);
+    color: white;
+}
+
+p {
+    white-space: pre-wrap;
+}
+
+.fizzbuzz {
+    color: red;
+}
+
+.fizz {
+    color: green;
+}
+
+.buzz {
+    color: blue;
+}
