@@ -10,46 +10,120 @@
 <body>
 
     <h1>Fizz Buzz Program</h1>
-    <p></p>
 
-    <div class="boxes">
+    <div class="container">
 
-        <div class="fizzBox"></div>
+        <p></p>
 
-        <div class="buzzBox"></div>
+        <div class="boxes"> <!-- 3 boxes to show the counnt of our results-->
+    
+            <div class="fizzBox">Fizz count: </div> 
+    
+            <div class="buzzBox">Buzz count: </div>
+    
+            <div class="fizz-buzzBox">FizzBuzz count:</div>
 
-        <div class="fizz-buzzBox"></div>
+            <button onclick="resetProgram()">Reset!</button> <!-- Button to reset the program to the intial state-->
+    
+        </div>
 
     </div>
+   
 
     <script>
         const para = document.querySelector('p');
-        let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
+        const fizz_buzzBox = document.querySelector('.fizz-buzzBox');
+        const fizzBox = document.querySelector('.fizzBox');
+        const buzzBox = document.querySelector('.buzzBox');
+
+
+        // Global variables
+        let fizzCount = 0;
+        let buzzCount = 0;
+        let fizzBuzzCount = 0;
         let output = "";
+        
 
-        for (let i = 1; i<= answer; i++) {
+        // Function to check if the input is a number 
+        function checkAnswer(answer) {
+            return !isNaN(answer) && answer > 0;
+        } 
+        
 
-            if (i % 3 === 0 && i % 5 === 0  ) {
-                output += '<span class="fizzbuzz">FizzBuzz</span><br>';
-            }
+        // Function to start FizzBuzz
+        function startFizzBuzz() {
+            let answer;
 
-            else if (i % 3 === 0){
-                output += '<span class="fizz">Fizz</span><br>';
-                
-            }
+            // Loop to keep prompting the user if the input is our function CheckAnswer(answer) is false (i.e input is not a number or =< 0)
+            do {
+                answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
+            } while(!checkAnswer(answer));
 
-            else if (i % 5 === 0) {
-                output += '<span class="buzz">Buzz</span><br>';
-            }
 
-            else {
-                output += i + "<br>";
-            }
+            // Reset the counters
+            fizzCount = 0;
+            buzzCount = 0;
+            fizzBuzzCount = 0;
+            output = ""; // Clear previous input
+
+            calcFizzBuzz(answer); // Perform main calculation
+            displayResults(); // Update the HTML with the results
+
         }
         
-        para.innerHTML = output;
+            // Function to calculate the FizzBuzz logic
+            function calcFizzBuzz(answer){
+
+            for (let i = 1; i<= answer; i++) {
+
+                if (i % 3 === 0 && i % 5 === 0  ) {
+                    output += '<span class="fizzbuzz">FizzBuzz</span><br>';
+                    fizzBuzzCount++;
+                }
+
+                else if (i % 3 === 0){
+                    output += '<span class="fizz">Fizz</span><br>';
+                    fizzCount++;
+                }
+
+                else if (i % 5 === 0) {
+                    output += '<span class="buzz">Buzz</span><br>';
+                    buzzCount++;
+                }
+
+                else {
+                    output += i + "<br>";
+                }
+
+            }
+
+         }
+
+         // Function to update HTML elements with the results
+         function displayResults(){
+            para.innerHTML = output;
+            fizz_buzzBox.textContent = `FizzBuzz count: ${fizzBuzzCount}`;
+            fizzBox.textContent = `Fizz count: ${fizzCount}`;
+            buzzBox.textContent = `Buzz count: ${buzzCount}`;
+         }
+        
         
 
+    
+
+        
+        // Reset function to clear and restart the program
+        function resetProgram() {
+            para.innerHTML = "";
+            fizz_buzzBox.textContent = `FizzBuzz count:`;
+            fizzBox.textContent = `Fizz count:`;
+            buzzBox.textContent = `Buzz count:`;
+            startFizzBuzz(); //Restart FizzBuzz
+        }
+
+
+        // Start the program initially
+        startFizzBuzz();
 
     </script>
     
